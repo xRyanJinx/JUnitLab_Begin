@@ -52,4 +52,36 @@ public class GiftCardTest {
 		out = "Remaining Balance: " + String.format("%6.2f", 90.00);
 		assertEquals("deduct(10.00)", out, card.deduct(10.0));
 	}
+
+	@Test
+	public void deduct_AmountDue() {
+
+		double balance;
+		GiftCard card;
+		int issuingStore;
+		String out;
+
+		issuingStore = 1337;
+		balance = 100.00;
+		card = new GiftCard(issuingStore, balance);
+
+		out = "Amount Due: " + String.format("%6.2f", 10.00);
+		assertEquals("deduct 110.00 from 100.00", out, card.deduct(110.0));
+	}
+
+	@Test
+	public void deduct_InvalidTransaction() {
+
+		double balance;
+		GiftCard card;
+		int issuingStore;
+		String out;
+
+		issuingStore = 1337;
+		balance = 100.00;
+		card = new GiftCard(issuingStore, balance);
+
+		out = "Invalid Transaction";
+		assertEquals("deduct -10.00 from 100.00", out, card.deduct(-10.0));
+	}
 }
