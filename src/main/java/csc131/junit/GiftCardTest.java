@@ -84,4 +84,14 @@ public class GiftCardTest {
 		out = "Invalid Transaction";
 		assertEquals("deduct -10.00 from 100.00", out, card.deduct(-10.0));
 	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void constructor_IncorrectID_Low() {
+		new GiftCard (-1, 100.00);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void constructor_IncorrectID_High() {
+		new GiftCard(100000, 100.00);
+	}
 }
